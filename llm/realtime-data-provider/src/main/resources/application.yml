@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: ollama-provider
+  threads:
+    virtual:
+      thread: true
+  lifecycle:
+    lifecycle:
+      timeout-per-shutdown-phase: 30s
+  devtools:
+    livereload:
+      enabled: true
+  data:
+    mongodb:
+      uri: mongodb+srv://<username>:<password>@cluster0.lnps5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: sample_mflix
+      socket-timeout: 60000
+      connect-timeout: 60000
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.1  # Model name, such as llama3.1
+          temperature: 0.9  # Temperature setting for controlling randomness in response generation  spring.ai.ollama.chat.options.temperature=0.7
+  mvc:
+    async:
+      request-timeout: 60000  # 30 seconds
+logging:
+  level:
+    #org.mongodb.driver: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+reactor:
+  task:
+    bound:
+      elastic-size: 1000
+      max-size: 1000
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: pg-llm-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.JsonSerializer
+      acks: -1
+pg:
+  ollama:
+    model: nomic-embed-text
+  mongo:
+    index-field: plot_embedding_ollama
+    collection: movies
+  topic: movies
+
+#server:
+#  port: 8081

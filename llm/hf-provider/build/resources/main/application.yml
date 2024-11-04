@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: pg-hf-llm-world
+  threads:
+    virtual:
+      thread: true
+  lifecycle:
+    lifecycle:
+      timeout-per-shutdown-phase: 30s
+  devtools:
+    livereload:
+      enabled: true
+  data:
+    mongodb:
+      uri: mongodb+srv://<username>>:<password>>@cluster0.lnps5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: sample_mflix
+      socket-timeout: 60000
+      connect-timeout: 60000
+  mvc:
+    async:
+      request-timeout: 60000  # 30 seconds
+logging:
+  level:
+    #org.mongodb.driver: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+reactor:
+  task:
+    bound:
+      elastic-size: 1000
+      max-size: 1000
+pg:
+  hugging-face:
+    url: https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2
+    token: <TOKEN>
+  mongo:
+    index-field: plot_embedding_ollama
+    collection: movies
+#server:
+#  port: 8081
