@@ -1,6 +1,6 @@
 # PG-LLM-World: Advanced Generative AI with Spring AI
 
-## Project Overview
+## Project overview
 
 PG-LLM-World is a cutting-edge Java Spring AI application that demonstrates the integration of Generative AI capabilities using Spring AI. This project showcases how to leverage state-of-the-art technologies to create a powerful, scalable, and efficient AI-driven application.
 
